@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>SCCAN-SNP</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script type="text/javascript">
+      function cancerSelected(){ 
+          var s = document.getElementById("cancerSelect");
+          var blcaPDB = new Array("1FAP","1FM6","1FKB","1FKF","1HW8","1HWI","1HWK","1HVY","1I00","1IHI","1J8U","1JU6","1JUJ","1K74","1K4T","1KW0","1M17","1MMK","1RR8","1RRJ","1TBF","1UDT","1UDU","1UHO","1UWH","1UWJ","1XKK","1XBB","1XOZ","1XZX","1Y0X","1ZGY","2BU8","2F89","2GQG","2H79","2HYY","2ITY","2OCF","2QIS","2XKW","3B2R","3CS9","3CZV","3DZY","3G9E","3H0A","3H52","3JWQ","3OG7","3PYY","3QX3","3RZE","3UG2","3UE4","3VN2","4DM8","4DRJ","4DRH","4DRI","4G5J","4HJO");
+          var brcaPDB = new Array("1FAP","1FM6","1FKB","1FKF","1HW8","1HWI","1HWK","1HVY","1I00","1IHI","1J8U","1JU6","1JUJ","1K74","1K4T","1KW0","1M17","1MMK","1RR8","1RRJ","1TBF","1UDT","1UDU","1UHO","1UWH","1UWJ","1XKK","1XBB","1XOZ","1XZX","1Y0X","1ZGY","2BU8","2F89","2GQG","2H79","2HYY","2ITY","2OCF","2QIS","2XKW","3B2R","3CS9","3CZV","3DZY","3G9E","3H0A","3H52","3JWQ","3OG7","3PYY","3QX3","3RZE","3UG2","3UE4","3VN2","4DM8","4DRJ","4DRH","4DRI","4G5J","4HJO");
+              switch(s.options[s.selectedIndex].value){
+                  case "BLCA":
+                      createSelector(blcaPDB, s);
+                      break;
+                  case "BRCA":
+                      createSelector(brcaPDB, s);
+                      break;
+              }
+      }
+      function createSelector(array, s){
+          var sState = document.createElement("p");
+          sState.innerHTML = "Selected a cancer type: " + s.options[s.selectedIndex].text;
+          document.body.appendChild(sState);
+
+          var newSelect = document.createElement("select");
+          var holder = document.createElement("div");
+          holder.className = "center";
+          var selectOption = document.createElement("option");
+          selectOption.selected = "selected";
+          selectOption.value = "";
+          selectOption.text = "Select a pdb";
+          newSelect.appendChild(selectOption);
+          for(var i = 0; i < array.length; ++i){
+                  var newOption = document.createElement("option");
+                  newOption.value = "pdb" + array[i].replace(/\s+/g, '');
+                  newOption.text = array[i];
+                  newSelect.onchange = pdbSelected;
+                  newSelect.id = "pdbSelect";
+                  newSelect.appendChild(newOption);
+          }
+          newSelect.className = "selector";
+          holder.appendChild(newSelect);
+          document.body.appendChild(holder);
+      }
+      function pdbSelected(){
+          var c = document.getElementById("pdbSelect");
+          window.location.href = "pdb/" + c.options[c.selectedIndex].text + ".pdb";
+      }
+    </script>
+
+
+    <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+
+    <script type="text/javascript" src="jsmol/JSmoljQuery.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolCore.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApplet.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApi.js"></script>
+    <script type="text/javascript" src="jsmol/j2s/j2sjmol.js"></script>
+    <script type="text/javascript" src="jsmol/JSmol.js"></script>
+    <!-- // following two only necessary for WebGL version: -->
+    <script type="text/javascript" src="jsmol/JSmolThree.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolGLmol.js"></script>
+
+    <script type="text/javascript">
+      var Info = {
+      width: 300,
+      height: 300,
+      serverURL: "http://chemapps.stolaf.edu/jmol/jsmol/jsmol.php ",
+      use: "HTML5",
+      j2sPath: "jsmol/j2s",
+      console: "jmolApplet0_infodiv"
+    }
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h7 class="navbar-brand"> SCCAN-SNP</h7>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="Overview.html">Overview</a></li>
+            <li><a href="Analytics.html">Analytics</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Genes</a></li>
+            <li><a href="Protein.html">Proteins</a></li>
+            <li><a href="">Mutations</a></li>
+            <li><a href="">Drugs</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Associated links</a></li>
+            <li><a href="">Export</a></li>
+            <li><a href="">Others</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Protein</h1>
+
+          <p id="sTitle"></p>
+          <div>
+              <select id="cancerSelect" onchange="cancerSelected();">
+                  <option value="" selected="selected">Select a cancer type</option>
+                  <option value="BLCA">BLCA</option>
+                  <option value="BRCA">BRCA</option>
+              </select>
+          </div>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <script type="text/javascript">
+            jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+            Jmol.script(jmolApplet0,"background black;load 1dh3.pdb")
+          </script>
+          <br>
+          <a href="javascript:Jmol.script(jmolApplet0,'spin on')">spin</a>
+          <a href="javascript:Jmol.script(jmolApplet0,'spin off')">off</a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
