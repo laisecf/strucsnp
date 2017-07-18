@@ -23,38 +23,43 @@
     <![endif]-->
 
     <script type="text/javascript">
-      var cancer = new  Array("BLCA", "BRCA");
+      var cancerArray = new  Array("BLCA", "BRCA", "COADREAD", "GBM", "HNSC");
       var pdb = new Array();
       pdb[0] = "";
-      pdb[1] = "1FAP","1FM6","1FKB","1FKF","1HW8","1HWI","1HWK","1HVY","1I00","1IHI","1J8U","1JU6","1JUJ","1K74","1K4T","1KW0","1M17","1MMK","1RR8","1RRJ","1TBF","1UDT","1UDU","1UHO","1UWH","1UWJ","1XKK","1XBB","1XOZ","1XZX","1Y0X","1ZGY","2BU8","2F89","2GQG","2H79","2HYY","2ITY","2OCF","2QIS","2XKW","3B2R","3CS9","3CZV","3DZY","3G9E","3H0A","3H52","3JWQ","3OG7","3PYY","3QX3","3RZE","3UG2","3UE4","3VN2","4DM8","4DRJ","4DRH","4DRI","4G5J","4HJO";
-      pdb[2] = "1FAP","1FM6","1FKB","1FKF","1HW8","1HWI","1HWK","1HVY","1I00","1IHI","1J8U","1JU6","1JUJ","1K74","1K4T","1KW0","1M17","1MMK","1RR8","1RRJ","1TBF","1UDT","1UDU","1UHO","1UWH","1UWJ","1XKK","1XBB","1XOZ","1XZX","1Y0X","1ZGY","2BU8","2F89","2GQG","2H79","2HYY","2ITY","2OCF","2QIS","2XKW","3B2R","3CS9","3CZV","3DZY","3G9E","3H0A","3H52","3JWQ","3OG7","3PYY","3QX3","3RZE","3UG2","3UE4","3VN2","4DM8","4DRJ","4DRH","4DRI","4G5J","4HJO";
+      pdb[1] = "1FAP,1FM6,1FKB,1FKF,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JU6,1JUJ,1K74,1K4T,1KW0,1M17,1MMK,1RR8,1RRJ,1TBF,1UDT,1UDU,1UHO,1UWH,1UWJ,1XKK,1XBB,1XOZ,1XZX,1Y0X,1ZGY,2BU8,2F89,2GQG,2H79,2HYY,2ITY,2OCF,2QIS,2XKW,3B2R,3CS9,3CZV,3DZY,3G9E,3H0A,3H52,3JWQ,3OG7,3PYY,3QX3,3RZE,3UG2,3UE4,3VN2,4DM8,4DRJ,4DRH,4DRI,4G5J,4HJO";
+      pdb[2] = "1FAP,1FM6";
+      pdb[3] = "1FAP,1FM6";
+      pdb[4] = "1FAP,1FM6";
+      pdb[5] = "1FAP,1FM6";
       
       function populatePDB(cancerElementID, pdbElementID){
         var selectedCancerIndex = document.getElementById(cancerElementID).selectIndex;
         var pdbElement = document.getElementById(pdbElementID);
 
         pdbElement.length = 0;
-        pdbElement.options[0] = new Option('Select pdb', '');
+        pdbElement.options[0] = new Option('Select PDB', '');
         pdbElement.selectedIndex = 0;
 
-        var pdb = pdb[selectedCancerIndex].split("|");
-        for(var i = 0; i < pdb.length; i++) {
-          pdbElement.options[pdbElement.length] = new Option(cancer[i], pdb[i]);
+        var pdbArray = pdb[selectedCancerIndex].split(",");
+        for(var i = 0; i < pdbArray.length; i++) {
+          pdbElement.options[pdbElement.length] = new Option(pdbArray[i], pdbArray[i]);
         }
       }
 
       function populateCancer(cancerElementID, pdbElementID){
         var cancerElement = document.getElementById(cancerElementID);
+
         cancerElement.length = 0;
         cancerElement.options[0] = new Option('Select cancer type', '-1');
         cancerElement.selectedIndex = 0;
-        for(var i = 0; i < cancer.length; i++){
-          cancerElement.options[cancerElement.length] = new Option(cancer[i], cancer[i]);
+
+        for(var i = 0; i < cancerArray.length; i++){
+          cancerElement.options[cancerElement.length] = new Option(cancerArray[i], cancerArray[i]);
         }
         if(pdbElementID) {
           cancerElement.onchange = function(){
             populatePDB(cancerElementID, pdbElementID);
-          }
+          };
         }
       }
 
