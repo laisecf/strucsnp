@@ -27,13 +27,13 @@
       var pdb = new Array();
       pdb[0] = "";
       pdb[1] = "1FAP,1FM6,1FKB,1FKF,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JU6,1JUJ,1K74,1K4T,1KW0,1M17,1MMK,1RR8,1RRJ,1TBF,1UDT,1UDU,1UHO,1UWH,1UWJ,1XKK,1XBB,1XOZ,1XZX,1Y0X,1ZGY,2BU8,2F89,2GQG,2H79,2HYY,2ITY,2OCF,2QIS,2XKW,3B2R,3CS9,3CZV,3DZY,3G9E,3H0A,3H52,3JWQ,3OG7,3PYY,3QX3,3RZE,3UG2,3UE4,3VN2,4DM8,4DRJ,4DRH,4DRI,4G5J,4HJO";
-      pdb[2] = "1FAP,1FM6";
-      pdb[3] = "1FAP,1FM6";
-      pdb[4] = "1FAP,1FM6";
-      pdb[5] = "1FAP,1FM6";
+      pdb[2] = "1AZM,1BZM,1CIL,1FAP,1FM6,1GS4,1K74,1M2Z,1NHZ,1O86,1P93,1TBF,1UDT,1UDU,1XOZ,1YDA,1YDB,1Z95,1FKB,1FKF,2AM9,2C6N,2F89,2H79,2OZ7,2POU,2Q7K,2QIS,3CLD,3CZV,3DAZ,3G8I,3G9E,3H0A,3H52,3HS4,3JWQ,3KIV,3NYA,3OLL,3OLS,3FHX,3UUD,3VN2,4DRH,4DRI,4DRJ,1UHO,3B2R,3D4S,3HKU,3LXE,4DM8";
+      pdb[3] = "1A28,1CEA,1CEB,1DLS,1ERR,1FAP,1FKB,1FKF,1GS4,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JD0,1JU6,1JUJ,1KW0,1M17,1M2Z,1MMK,1NHZ,1P93,1T46,1TBF,1UDT,1UDU,1U72,1UHO,1UWH,1UWJ,1X70,1XKK,1XOZ,1Z95,1ZUC,2AM9,2GQG,2H79,2HYY,2ITY,2JFA,2OCF,2OZ7,2PK4,2Q7K,2QMJ,2QXS,2RGU,2VDM,2W8Y,2W26,2WGJ,2XP2,2YJA,2YFX,3B2R,3BBT,3BJM,3CLD,3CS9,3D90,3EIG,3ERD,3G0E,3G0B,3G8I,3H52,3HM1,3JWQ,3KIV,3OG7,3PYY,3Q95,3QX3,3S7S,3TOP,3TVX,3UG2,3UE4,3UUD,3VW7,4AGD,4DM8,4DRH,4DRI,4DRJ,4G5J,4HJO";
+      pdb[4] = "1HW8,1HWI,1HWK,1ITU,1M17,1M2Z,1NHZ,1P93,1T46,1XKK,2ITY,2WGJ,3CLD,3D91,3G0E,3H52,3IAK,3JUS,3KIV,3LD6,3UG2,4G5J,4HJO,4EY6,4EY7";
+      pdb[5] = "...";
       
       function populatePDB(cancerElementID, pdbElementID){
-        var selectedCancerIndex = document.getElementById(cancerElementID).selectIndex;
+        var selectedCancerIndex = document.getElementById(cancerElementID).selectedIndex;
         var pdbElement = document.getElementById(pdbElementID);
 
         pdbElement.length = 0;
@@ -44,6 +44,10 @@
         for(var i = 0; i < pdbArray.length; i++) {
           pdbElement.options[pdbElement.length] = new Option(pdbArray[i], pdbArray[i]);
         }
+
+        pdbElement.onchange = function(){
+            pdbSelected(cancerElementID, pdbElementID);
+          };
       }
 
       function populateCancer(cancerElementID, pdbElementID){
@@ -63,9 +67,10 @@
         }
       }
 
-      function pdbSelected(){
-          //var c = document.getElementById("pdbSelect");
-          //window.location.href = "pdb/" + c.options[c.selectedIndex].text + ".pdb";
+      function pdbSelected(cancerElementID, pdbElementID){
+          var c = document.getElementById("pdbSelected");
+          var pdbCode = c.options[c.selectedIndex].text + ".pdb";
+          return pdbCode;
       }
     </script>
 
@@ -154,7 +159,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <script type="text/javascript">
             jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
-            Jmol.script(jmolApplet0,"background black;load 1dh3.pdb")
+            Jmol.script(jmolApplet0,"background black;load pdb/1fm6.pdb");
           </script>
           <br>
           <a href="javascript:Jmol.script(jmolApplet0,'spin on')">spin</a>
