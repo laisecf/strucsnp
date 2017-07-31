@@ -23,7 +23,7 @@
     <![endif]-->
 
     <script type="text/javascript">
-      var cancerArray = new  Array("BLCA", "BRCA", "COADREAD", "GBM", "HNSC");
+      var cancerArray = new  Array("BLCA", "BRCA", "COADREAD", "GBM", "HNSC", "KIRC", "LAML", "LGG", "LUAD", "LUSC", "OV", "PRAD", "SARC", "SKCM", "STAD", "UCEC");
       var pdb = new Array();
       pdb[0] = "";
       pdb[1] = "1FAP,1FM6,1FKB,1FKF,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JU6,1JUJ,1K74,1K4T,1KW0,1M17,1MMK,1RR8,1RRJ,1TBF,1UDT,1UDU,1UHO,1UWH,1UWJ,1XKK,1XBB,1XOZ,1XZX,1Y0X,1ZGY,2BU8,2F89,2GQG,2H79,2HYY,2ITY,2OCF,2QIS,2XKW,3B2R,3CS9,3CZV,3DZY,3G9E,3H0A,3H52,3JWQ,3OG7,3PYY,3QX3,3RZE,3UG2,3UE4,3VN2,4DM8,4DRJ,4DRH,4DRI,4G5J,4HJO";
@@ -31,7 +31,19 @@
       pdb[3] = "1A28,1CEA,1CEB,1DLS,1ERR,1FAP,1FKB,1FKF,1GS4,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JD0,1JU6,1JUJ,1KW0,1M17,1M2Z,1MMK,1NHZ,1P93,1T46,1TBF,1UDT,1UDU,1U72,1UHO,1UWH,1UWJ,1X70,1XKK,1XOZ,1Z95,1ZUC,2AM9,2GQG,2H79,2HYY,2ITY,2JFA,2OCF,2OZ7,2PK4,2Q7K,2QMJ,2QXS,2RGU,2VDM,2W8Y,2W26,2WGJ,2XP2,2YJA,2YFX,3B2R,3BBT,3BJM,3CLD,3CS9,3D90,3EIG,3ERD,3G0E,3G0B,3G8I,3H52,3HM1,3JWQ,3KIV,3OG7,3PYY,3Q95,3QX3,3S7S,3TOP,3TVX,3UG2,3UE4,3UUD,3VW7,4AGD,4DM8,4DRH,4DRI,4DRJ,4G5J,4HJO";
       pdb[4] = "1HW8,1HWI,1HWK,1ITU,1M17,1M2Z,1NHZ,1P93,1T46,1XKK,2ITY,2WGJ,3CLD,3D91,3G0E,3H52,3IAK,3JUS,3KIV,3LD6,3UG2,4G5J,4HJO,4EY6,4EY7";
       pdb[5] = "1CIL,1FAP,1FM6,1FKB,1FKF,1G5Y,1HVY,1I00,1JU6,1JUJ,1K74,1M2Z,1P93,1UWH,1UWJ,1XLS,1YDA,1YDB,2GQG,2HYY,2OCF,2POU,2Q8H,2QMJ,2XP2,2YFX,3BBT,3CLD,3CS9,3CZV,3DAZ,3DZY,3ERD,3FC6,3H0A,3H52,3HKU,3HS4,3JWQ,3JUS,3LD6,3OAP,3OG7,3PYY,3Q95,3TOP,3UE4,4DRJ";
+      pdb[6] = "";
+      pdb[7] = "";
+      pdb[8] = "";
+      pdb[9] = "";
+      pdb[10] = "";
+      pdb[11] = "";
+      pdb[12] = "";
+      pdb[13] = "";
+      pdb[14] = "";
+      pdb[15] = "";
+      pdb[16] = "";
       
+
       function populatePDB(cancerElementID, pdbElementID){
         var selectedCancerIndex = document.getElementById(cancerElementID).selectedIndex;
         var pdbElement = document.getElementById(pdbElementID);
@@ -68,9 +80,9 @@
       }
 
       function pdbSelected(cancerElementID, pdbElementID){
-          //console.log(pdbSelected);
-          //var c = "pdb/" + pdbSelected.toString + ".pdb";
-          Jmol.loadFile(jmolApplet0,'1a0k.pdb',';if (_is2D) {set hermitelevel 0} else {set hermitelevel 6;set ribbonAspectRatio 4};cartoons only;color structure;');
+          var c = "pdb/" + pdbElementID + ".pdb";
+          console.log(c);
+          Jmol.loadFile(jmolApplet0, c,';if (_is2D) {set hermitelevel 0} else {set hermitelevel 6;set ribbonAspectRatio 4};cartoons only;color structure;');
       }
     </script>
 
