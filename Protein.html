@@ -80,8 +80,8 @@
       }
 
       function pdbSelected(cancerElementID, pdbElementID){
-          var c = "pdb/" + pdbElementID + ".pdb";
-          console.log(c);
+          var selectedPdbIndex = document.getElementById(pdbElementID).value;
+          var c = "pdb/" + selectedPdbIndex.toLowerCase() + ".pdb";
           Jmol.loadFile(jmolApplet0, c,';if (_is2D) {set hermitelevel 0} else {set hermitelevel 6;set ribbonAspectRatio 4};cartoons only;color structure;');
       }
     </script>
