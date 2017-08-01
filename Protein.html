@@ -39,9 +39,9 @@
       pdb[11] = "1A28,1CEA,1CIL,1HW8,1HWI,1HWK,1M2Z,1P93,1W0G,1YDA,1YDB,1DLS,1FAP,1FKB,1FKF,1U72,1ZUC,2F89,2PK4,2POU,2Q8H,2QIS,2QMJ,2W8Y,2WGJ,3CLD,3D90,3D91,3DAZ,3DZY,3ERD,3G8I,3H52,3HS4,3JUS,3LD6,3Q95,3CZV,3EIG,3TOP,4DRJ,1CEB,1IHI,3HKU,3NOS,3OAP";
       pdb[12] = "1AZM,1BZM,1CIL,1FM6,1ITU,1K74,1M2Z,1P93,1YDA,1YDB,2OCF,2POU,2QMJ,3CLD,3CZV,3DAZ,3DZY,3ERD,3H0A,3H52,3HS4,3Q95,3TOP,1G5Y,1XLS,3FC6,3HKU,3LXE,3OAP";
       pdb[13] = "1DB1,1FAP,1GS4,1HVY,1I00,1IE9,1JU6,1JUJ,1K4T,1M2Z,1NB9,1NHZ,1P93,1RR8,1RRJ,1S2Y,1UWH,1UWJ,1Z95,2AM9,2F89,2GQG,2HYY,2OZ7,2Q7K,2QIS,2W26,2WGJ,3C0Z,3C6M,3CLD,3CS9,3CZV,3DZY,3ERD,3FHX,3GCS,3GWX,3H52,3HEG,3IAK,3JUS,3LD6,3M7R,3OAP,3OG7,3PYY,3Q95,3QX3,3TVX,3UE4,3VW7,4DRH,4DRI,4DRJ";
-      pdb[14] = "";
-      pdb[15] = "";
-      pdb[16] = "";
+      pdb[14] = "1A28,1AZM,1BZM,1CEA,1CEB,1CIL,1DWC,1IHI,1ITU,1K4T,1M17,1M2Z,1MX1,1O86,1P93,1RR8,1RRJ,1T46,1XKK,1XBB,1XZX,1YDA,1YDB,1Y0X,1ZUC,2C6N,2GQG,2HYY,2ITY,2OCF,2POU,2PK4,2QMJ,2VDM,2W8Y,2WGJ,3BBT,3C6M,3CLD,3CS9,3D90,3CZV,3DAZ,3DZY,3ERD,3G0E,3G8I,3GCS,3GWX,3H52,3HEG,3HKU,3HS4,3JWQ,3KIV,3LXE,3MDZ,3ML5,3OAP,3PYY,3Q95,3QX3,3RZE,3S7S,3TOP,3UG2,3UE4,3VW7,4AGD,4DM8,4G5J,4HJO";
+      pdb[15] = "1AZM,1BZM,1CIL,1FM6,1ITU,1K74,1M2Z,1NHZ,1P93,1S2Y,1W0G,1X70,1XZX,1Y0X,1YDA,1YDB,1FAP,1FKB,1FKF,1NB9,2BU8,2F89,2GQG,2H79,2HYY,2OCF,2POU,2QIS,2RGU,2W26,3BBT,3BJM,3CLD,3CS9,3D91,3DAZ,3G0B,3G8I,3G9E,3H0A,3H52,3HS4,3JWQ,3NYA,3OLL,3OLS,3PYY,3B6R,3S7S,3UE4,3UUD,3VN2,4EY6,4EY7,1IHI,1K4T,1RR8,1RRJ,3D4S,3HKU,3LXE,3NOS,3VW7,4DM8";
+      pdb[16] = "1AZM,1BZM,1CEA,1CEB,1DB1,1DLS,1FM6,1GS4,1HVY,1I00,1IE9,1JU6,1JUJ,1K74,1M2Z,1NHZ,1P93,1T46,1TBF,1UDT,1UDU,1U72,1UHO,1UWH,1UWJ,1XOZ,1Z95,2AM9,2F89,2H79,2OCF,2OZ7,2PK4,2Q7K,2QIS,2QMJ,2WGJ,3B2R,3C0Z,3C6M,3CLD,3D91,3EIG,3FHX,3G0E,3G8I,3G9E,3H0A,3H52,3JWQ,3KIV,3LXE,3M7R,3OG7,3OLL,3OLS,3S7S,3TOP,3TVX,3UUD,3VN2,4AGD,4DM8,4DRJ,4EY6,4EY7";
       
 
       function populatePDB(cancerElementID, pdbElementID){
@@ -101,8 +101,8 @@
 
     <script type="text/javascript">
       var Info = {
-      width: 300,
-      height: 300,
+      width: 400,
+      height: 400,
       serverURL: "http://chemapps.stolaf.edu/jmol/jsmol/jsmol.php ",
       use: "HTML5",
       j2sPath: "jsmol/j2s",
@@ -139,25 +139,23 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
             <li><a href="Overview.html">Overview</a></li>
+            <li><a href="Protein.html">Proteins</a></li>
+            <li><a href="Ligands.html">Ligands</a></li>
             <li><a href="Analytics.html">Analytics</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Genes</a></li>
-            <li><a href="Protein.html">Proteins</a></li>
-            <li><a href="">Mutations</a></li>
-            <li><a href="">Drugs</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Associated links</a></li>
             <li><a href="">Export</a></li>
+            <li><a href="">Associated links</a></li>
             <li><a href="">Others</a></li>
           </ul>
+          <br/>
+          <img src="biome.png" alt="Biome" style="width:100px;height:100px;">
+          <img src="bioinfo2.png" alt="Bioinfo" style="width:160px;height:80px;">
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Protein</h1>
 
-          <div>
             <select id="cancer" name="cancer"></select>
             <br/>
             <select name="pdb" id="pdb"></select>
@@ -165,19 +163,13 @@
             <script language="javascript">
                 populateCancer("cancer", "pdb");
             </script>
-          </div>
 
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <script type="text/javascript">
-            jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
-            Jmol.script(jmolApplet0,"background black;load 1a0k.pdb");
-          </script>
-          <br>
-          <a href="javascript:Jmol.script(jmolApplet0,'spin on')">spin</a>
-          <a href="javascript:Jmol.script(jmolApplet0,'spin off')">off</a>
-        </div>
-      </div>
+            <script type="text/javascript">
+              jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+              Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb");
+            </script>
+            <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
+            <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
     </div>
 
   </body>
