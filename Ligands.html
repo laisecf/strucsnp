@@ -20,6 +20,94 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script type="text/javascript">
+      var optionArray = new  Array("RCSB");
+      var ligand = new Array();
+      ligand[0] = "";
+      ligand[1] = "1C9H_RAP_A_108_NO_H,2DG4_RAP_A_501_NO_H,4QT2_RAP_A_202_NO_H,1FAP_RAP_A_108_NO_H,2DG9_RAP_A_501_NO_H,4QT3_RAP_A_202_NO_H,1FKB_RAP_A_108_NO_H,2VCD_RAP_A_138_NO_H,5FLC_RAP_C_999_NO_H,1FKL_RAP_A_108_NO_H,3KZ7_RAP_A_225_NO_H,5GPG_RAP_A_301_NO_H,1PBK_RAP_A_225_NO_H,4DRH_RAP_A_201_NO_H,5HKG_RAP_A_201_NO_H,1Z58_RAP_2_2881_NO_H,4DRI_RAP_A_201_NO_H,2DG3_RAP_A_501_NO_H,4DRJ_RAP_A_201_NO_H";
+      ligand[2] = "";
+      ligand[3] = "";
+      ligand[4] = "";
+      ligand[5] = "";
+      ligand[6] = "";
+      ligand[7] = "";
+      ligand[8] = "";
+      ligand[9] = "";
+      ligand[10] = "";
+      ligand[11] = "";
+      ligand[12] = "";
+      ligand[13] = "";
+      ligand[14] = "";
+      ligand[15] = "";
+      ligand[16] = "";
+      
+
+      function populateLigand(optionElementID, ligandElementID){
+        var selectedoptionIndex = document.getElementById(optionElementID).selectedIndex;
+        var ligandElement = document.getElementById(ligandElementID);
+
+        ligandElement.length = 0;
+        ligandElement.options[0] = new Option('Select Ligand', '');
+        ligandElement.selectedIndex = 0;
+
+        var ligandArray = ligand[selectedoptionIndex].split(",");
+        for(var i = 0; i < ligandArray.length; i++) {
+          ligandElement.options[ligandElement.length] = new Option(ligandArray[i], ligandArray[i]);
+        }
+
+        ligandElement.onchange = function(){
+            ligandSelected(optionElementID, ligandElementID);
+          };
+      }
+
+      function populateoption(optionElementID, ligandElementID){
+        var optionElement = document.getElementById(optionElementID);
+
+        optionElement.length = 0;
+        optionElement.options[0] = new Option('Select option type', '-1');
+        optionElement.selectedIndex = 0;
+
+        for(var i = 0; i < optionArray.length; i++){
+          optionElement.options[optionElement.length] = new Option(optionArray[i], optionArray[i]);
+        }
+        if(ligandElementID) {
+          optionElement.onchange = function(){
+            populateLigand(optionElementID, ligandElementID);
+          };
+        }
+      }
+
+      function ligandSelected(optionElementID, ligandElementID){
+          var selectedLigandIndex = document.getElementById(ligandElementID).value;
+          var c = "ligands/" + selectedLigandIndex + ".sdf";
+          Jmol.loadFile(jmolApplet0, c);
+      }
+    </script>
+
+
+    <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+
+    <script type="text/javascript" src="jsmol/JSmoljQuery.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolCore.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApplet.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApi.js"></script>
+    <script type="text/javascript" src="jsmol/j2s/j2sjmol.js"></script>
+    <script type="text/javascript" src="jsmol/JSmol.js"></script>
+    <!-- // following two only necessary for WebGL version: -->
+    <script type="text/javascript" src="jsmol/JSmolThree.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolGLmol.js"></script>
+
+    <script type="text/javascript">
+      var Info = {
+      width: 400,
+      height: 400,
+      serverURL: "http://chemapps.stolaf.edu/jmol/jsmol/jsmol.php ",
+      use: "HTML5",
+      j2sPath: "jsmol/j2s",
+      console: "jmolApplet0_infodiv"
+    }
+    </script>
   </head>
 
   <body>
@@ -68,6 +156,20 @@
           <h1 class="page-header">Ligands</h1>
 
           <h3 class="sub-header">Drugs/Chemical Compounds</h3>
+          <select id="option" name="option"></select>
+            <br/>
+            <select name="ligand" id="ligand"></select>
+
+            <script language="javascript">
+                populateoption("option", "ligand");
+            </script>
+
+            <script type="text/javascript">
+              jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+              Jmol.script(jmolApplet0,"background white;load ligands/1C9H_RAP_A_108_NO_H.sdf");
+            </script>
+            <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
+            <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
         </div>
       </div>
     </div>
