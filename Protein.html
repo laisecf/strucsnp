@@ -166,10 +166,14 @@
 
             <script type="text/javascript">
               jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
-              Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb");
+              Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb; cartoons only; color structure");
             </script>
             <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
             <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
+            <br/>
+            <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface {hydrophobic} white')">Isosurface</a>
+            <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface translucent white')">Translucent</a>
+            <a href="javascript:Jmol.script(jmolApplet0,'isosurface delete;')">OFF</a>
     </div>
 
   </body>
