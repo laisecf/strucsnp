@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>SCCAN-SNP</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var PositionArray = new  Array("1", "2", "3", "4", "...", "480", "481", "...", "max");
+      var SNP = new Array();
+      SNP[0] = "";
+      SNP[1] = "C -> G, A -> C";
+      SNP[2] = "1AZM,1BZM,1CIL,1FAP,1FM6,1GS4,1K74,1M2Z,1NHZ,1O86,1P93,1TBF,1UDT,1UDU,1XOZ,1YDA,1YDB,1Z95,1FKB,1FKF,2AM9,2C6N,2F89,2H79,2OZ7,2POU,2Q7K,2QIS,3CLD,3CZV,3DAZ,3G8I,3G9E,3H0A,3H52,3HS4,3JWQ,3KIV,3NYA,3OLL,3OLS,3FHX,3UUD,3VN2,4DRH,4DRI,4DRJ,1UHO,3B2R,3D4S,3HKU,3LXE,4DM8";
+      SNP[3] = "1A28,1CEA,1CEB,1DLS,1ERR,1FAP,1FKB,1FKF,1GS4,1HW8,1HWI,1HWK,1HVY,1I00,1IHI,1J8U,1JD0,1JU6,1JUJ,1KW0,1M17,1M2Z,1MMK,1NHZ,1P93,1T46,1TBF,1UDT,1UDU,1U72,1UHO,1UWH,1UWJ,1X70,1XKK,1XOZ,1Z95,1ZUC,2AM9,2GQG,2H79,2HYY,2ITY,2JFA,2OCF,2OZ7,2PK4,2Q7K,2QMJ,2QXS,2RGU,2VDM,2W8Y,2W26,2WGJ,2XP2,2YJA,2YFX,3B2R,3BBT,3BJM,3CLD,3CS9,3D90,3EIG,3ERD,3G0E,3G0B,3G8I,3H52,3HM1,3JWQ,3KIV,3OG7,3PYY,3Q95,3QX3,3S7S,3TOP,3TVX,3UG2,3UE4,3UUD,3VW7,4AGD,4DM8,4DRH,4DRI,4DRJ,4G5J,4HJO";
+      SNP[4] = "1HW8,1HWI,1HWK,1ITU,1M17,1M2Z,1NHZ,1P93,1T46,1XKK,2ITY,2WGJ,3CLD,3D91,3G0E,3H52,3IAK,3JUS,3KIV,3LD6,3UG2,4G5J,4HJO,4EY6,4EY7";
+      SNP[5] = "1CIL,1FAP,1FM6,1FKB,1FKF,1G5Y,1HVY,1I00,1JU6,1JUJ,1K74,1M2Z,1P93,1UWH,1UWJ,1XLS,1YDA,1YDB,2GQG,2HYY,2OCF,2POU,2Q8H,2QMJ,2XP2,2YFX,3BBT,3CLD,3CS9,3CZV,3DAZ,3DZY,3ERD,3FC6,3H0A,3H52,3HKU,3HS4,3JWQ,3JUS,3LD6,3OAP,3OG7,3PYY,3Q95,3TOP,3UE4,4DRJ";
+      SNP[6] = "1DWC,1FM6,1K74,1M2Z,1NHZ,1P93,1XZX,1Y0X,1ZGY,2GQG,2H79,2HYY,2WGJ,2XKW,3CLD,3CS9,3DZY,3G9E,3H0A,3H52,3KIV,3NYA,3PYY,3QX3,3UE4,3RZE,3VN2,1J8U,1KW0,1MMK,3D4S,4DM8";
+      SNP[7] = "1T46,3G0E,3FHX,3S7S";
+      SNP[8] = "1FAP,1UWH,1UWJ,2VDM,3H52,3KIV,3NOS,3OG7,4DRH,4DRI,4DRJ";
+      SNP[9] = "1A28,1CEA,1ERR,1FM6,1HVY,1I00,1JU6,1JUJ,1K74,1M2Z,1NHZ,1P93,1XBB,1ZGY,1ZUC,2F89,2JFA,2OCF,2PK4,2QIS,2QMJ,2QXS,2W8Y,2XKW,2XP2,2YFX,2YJA,3BBT,3CLD,3D90,3D91,3DZY,3ERD,3G8I,3G9E,3GWX,3H0A,3H52,3HM1,3JWQ,3KIV,3OLL,3OLS,3Q95,3B6R,3CZV,3TOP,3UUD,3VN2,4DRJ,1CEB,1K4T,1RR8,1RRJ,1IHI,3OAP,4DM8";
+
+      function populateSNP(PositionElementID, SNPElementID){
+        var selectedPositionIndex = document.getElementById(PositionElementID).selectedIndex;
+        var SNPElement = document.getElementById(SNPElementID);
+
+        SNPElement.length = 0;
+        SNPElement.options[0] = new Option('Select SNP', '');
+        SNPElement.selectedIndex = 0;
+
+        var SNPArray = SNP[selectedPositionIndex].split(",");
+        for(var i = 0; i < SNPArray.length; i++) {
+          SNPElement.options[SNPElement.length] = new Option(SNPArray[i], SNPArray[i]);
+        }
+
+        SNPElement.onchange = function(){
+            SNPSelected(PositionElementID, SNPElementID);
+          };
+      }
+
+      function populatePosition(PositionElementID, SNPElementID){
+        var PositionElement = document.getElementById(PositionElementID);
+
+        PositionElement.length = 0;
+        PositionElement.options[0] = new Option('Select Position type', '-1');
+        PositionElement.selectedIndex = 0;
+
+        for(var i = 0; i < PositionArray.length; i++){
+          PositionElement.options[PositionElement.length] = new Option(PositionArray[i], PositionArray[i]);
+        }
+        if(SNPElementID) {
+          PositionElement.onchange = function(){
+            populateSNP(PositionElementID, SNPElementID);
+          };
+        }
+      }
+
+      function SNPSelected(PositionElementID, SNPElementID){
+          var selectedSNPIndex = document.getElementById(SNPElementID).value;
+          var c = "SNP/" + selectedSNPIndex.toLowerCase() + ".SNP";
+          Jmol.loadFile(jmolApplet0, c,';if (_is2D) {set hermitelevel 0} else {set hermitelevel 6;set ribbonAspectRatio 4};cartoons only;color structure;');
+      }
+    </script>
+
+
+    <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+
+    <script type="text/javascript" src="jsmol/JSmoljQuery.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolCore.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApplet.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolApi.js"></script>
+    <script type="text/javascript" src="jsmol/j2s/j2sjmol.js"></script>
+    <script type="text/javascript" src="jsmol/JSmol.js"></script>
+    <!-- // following two only necessary for WebGL version: -->
+    <script type="text/javascript" src="jsmol/JSmolThree.js"></script>
+    <script type="text/javascript" src="jsmol/JSmolGLmol.js"></script>
+
+    <script type="text/javascript">
+      var Info = {
+      width: 400,
+      height: 400,
+      serverURL: "http://chemapps.stolaf.edu/jmol/jsmol/jsmol.php ",
+      use: "HTML5",
+      j2sPath: "jsmol/j2s",
+      console: "jmolApplet0_infodiv"
+    }
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h7 class="navbar-brand"> SCCAN-SNP</h7>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="Overview.html">Overview</a></li>
+            <li><a href="Protein.html">Proteins</a></li>
+            <li><a href="Ligands.html">Ligands</a></li>
+            <li><a href="Mutations.html">SNPs</a></li>
+            <li><a href="Analytics.html">Analytics</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Downloads</a></li>
+            <li><a href="">Associated links</a></li>
+          </ul>
+          <br/>
+          <img src="biome.png" alt="Biome" style="width:100px;height:100px;">
+          <img src="bioinfo2.png" alt="Bioinfo" style="width:160px;height:80px;">
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">SNP</h1>
+          <div id="container">
+            <div id="left">
+                <script type="text/javascript">
+                jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+                Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb; cartoons only; color structure");
+                </script>
+                <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
+                <br/>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface {hydrophobic} white;')">Isosurface</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface translucent white')">Translucent</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface delete;')">OFF</a>
+            </div>
+            <div id="center">
+                <select id="Position" name="Position"></select>
+                <br/>
+                <select name="SNP" id="SNP"></select>
+
+                <script language="javascript">
+                    populatePosition("Position", "SNP");
+                </script>
+            </div>
+            <div id="right">
+                <select id="Position" name="Position"></select>
+                <br/>
+                <select name="SNP" id="SNP"></select>
+
+                <script language="javascript">
+                    populatePosition("Position", "SNP");
+                </script>
+
+                <script type="text/javascript">
+                jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+                Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb; cartoons only; color structure");
+                </script>
+                <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
+                <br/>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface {hydrophobic} white;')">Isosurface</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface translucent white')">Translucent</a>
+                <a href="javascript:Jmol.script(jmolApplet0,'isosurface delete;')">OFF</a>
+            </div>
+          </div>  
+    </div>
+
+  </body>
+</html>

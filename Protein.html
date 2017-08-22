@@ -141,39 +141,48 @@
             <li><a href="Overview.html">Overview</a></li>
             <li><a href="Protein.html">Proteins</a></li>
             <li><a href="Ligands.html">Ligands</a></li>
-            <li><a href="Mutations.html">SNPs</a></li>
-            <li><a href="Analytics.html">Analytics</a></li>
+            <li><a href="Mutations.html">Mutations</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Downloads</a></li>
             <li><a href="">Associated links</a></li>
           </ul>
+          <img src="logo_BSC_symbol.png" alt="Rede" style="width:80px;height:70px;">
           <br/>
           <img src="biome.png" alt="Biome" style="width:100px;height:100px;">
-          <img src="bioinfo2.png" alt="Bioinfo" style="width:160px;height:80px;">
+          <br/>
+          <img src="bioinfo2.png" alt="Bioinfo" style="width:150px;height:70px;">
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Protein</h1>
+          <div class="container">
+            <div class="left">
+              <select id="cancer" name="cancer"></select>
+              <br/>
+              <select name="pdb" id="pdb"></select>
 
-            <select id="cancer" name="cancer"></select>
-            <br/>
-            <select name="pdb" id="pdb"></select>
+              <script language="javascript">
+                  populateCancer("cancer", "pdb");
+              </script>
 
-            <script language="javascript">
-                populateCancer("cancer", "pdb");
-            </script>
+              <script type="text/javascript">
+                jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+                Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb; cartoons only; color structure");
+              </script>
 
-            <script type="text/javascript">
-              jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
-              Jmol.script(jmolApplet0,"background white;load pdb/1a28.pdb; cartoons only; color structure");
-            </script>
-            <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
-            <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
-            <br/>
-            <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface {hydrophobic} white;')">Isosurface</a>
-            <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface translucent white')">Translucent</a>
-            <a href="javascript:Jmol.script(jmolApplet0,'isosurface delete;')">OFF</a>
+              <a href="javascript:Jmol.script(jmolApplet0,'spin on')">SPIN</a>
+              <a href="javascript:Jmol.script(jmolApplet0,'spin off')">OFF</a>
+              <br/>
+              <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface {hydrophobic} white;')">Isosurface</a>
+              <a href="javascript:Jmol.script(jmolApplet0,'isosurface sasurface; color isosurface translucent white')">Translucent</a>
+              <a href="javascript:Jmol.script(jmolApplet0,'isosurface delete;')">OFF</a>
+            </div>
+          <div class="right">
+              <a href="https://www.rcsb.org/pdb/explore/explore.do?structureId=" + selectedPdbIndex.toLowerCase() + "">View details</a>
+              <br/>
+          </div>
+        </div>
     </div>
 
   </body>
