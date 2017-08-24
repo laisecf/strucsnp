@@ -1,9 +1,14 @@
-.sidebar { 
-	background-color: #3d91ce; 
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+.sidebar {
+	background-color: #3d91ce;
 	margin-top: 67px;
-    padding-top: 10px;
-    position: fixed;
-    min-height: 100%;
+  padding-top: 10px;
+  position: fixed;
+  min-height: 100%;
+	font-size: 17px;
 }
 
 .sidebar a { color: white; }
@@ -38,7 +43,32 @@
     color: white;
 }
 
+.sidebar .logos { margin-top: 15px }
+
+.sidebar .logos img {
+	margin: 10px 0;
+	max-height: 70px;
+}
+
 .main {
 	margin-top: 67px;
 }
 
+.controls, .actions { margin: 15px 0; }
+#jmolApplet0_appletinfotablediv { margin: 0 auto; }
+
+
+
+/* Override */
+
+.panel-primary { border-color: #ffa500; }
+.panel-primary > .panel-heading {
+	background-color: #ffa500;
+	border-color: #ffa500;
+}
+.panel-primary > .panel-footer {
+	font-size: 12px;
+	color: #ffa500;
+	border-color: #ffa500;
+	background-color: #fbf8ee;
+}
